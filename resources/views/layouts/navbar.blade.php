@@ -1,7 +1,7 @@
 <div class="flex px-24 py-5 bg-white">
     <div class="flex w-1/12 justify-center">
         <a href="/">
-            <img src="{{ asset('img/byke-gray.png') }}" style="max-width:50%;">
+            <img src="{{ asset('img/byke-green.png') }}" style="max-width:50%;">
         </a>
     </div>
 

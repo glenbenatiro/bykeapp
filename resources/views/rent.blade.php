@@ -9,14 +9,17 @@
 
 @section('content')
 
-<div class="flex px-24 py-5 fixed inset-x-0 top-0 z-10 bg-white">
+<!-- get user location on page load -->
+<body onload="getLocation()">
+
+<div class="flex px-24 py-5 bg-white fixed inset-x-0 top-0 z-10">
     <div class="flex w-1/12 justify-center">
         <a href="/">
-            <img src="{{ asset('img/byke-gray.png') }}" style="max-width:50%;">
+            <img src="{{ asset('img/byke-green.png') }}" style="max-width:50%;">
         </a>
     </div>
 
-    <ul class="flex w-10/12 justify-center">
+    <ul class="flex w-10/12 justify-center items-center">
         <li class="mr-12">
             <a class="text-glen-gray " href="/rent">Rent</a>
         </li>
@@ -34,8 +37,9 @@
         </li>
     </ul>
 
-    <div class="flex w-1/12">
-        <a class="text-glen-gray " href="#">Login</a>
+    <div class="flex w-1/12 justify-center items-center">
+        <a class="text-glen-gray pr-4 mr-4 border-r-2 border-color-glen-gray" href="/login">Login</a>
+        <a class="text-glen-gray" href="/register">Register</a>
     </div>
 </div>
 
@@ -63,7 +67,22 @@
           zoom: 16
         })
       });
+
+
+    function getLocation() {
+        if (navigator.geolocation) {
+        navigator.geolocation.getCurrentPosition(showPosition);
+    } else { 
+        x.innerHTML = "Geolocation is not supported by this browser.";
+    }
+    }
+
+    function showPosition(position) {
+    x.innerHTML = "Latitude: " + position.coords.latitude + 
+    "<br>Longitude: " + position.coords.longitude;
+}
     </script>
+
 
 
 @endsection
