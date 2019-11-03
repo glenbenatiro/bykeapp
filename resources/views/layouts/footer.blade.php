@@ -1,7 +1,7 @@
 <div class="flex px-48 py-12 h-48 bg-footer-bg-gray">
 
 <div class="flex w-1/4 justify-center items-center">
-  <p class="text-footer-text-gray">Byke Philippines.</p>
+  <img src="{{ asset('img/byke-footer.png') }}" style="max-width:15%;">
 </div>
 
 <div class="flex flex-col w-3/4 justify-center items-end">

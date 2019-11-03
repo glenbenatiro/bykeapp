@@ -13,6 +13,7 @@ module.exports = {
       colors: {
         'footer-bg-gray': '#4d4d4d',
         'footer-text-gray': '#989898',
+        'gray': '#1f1f1f',
       },
     },
   },
