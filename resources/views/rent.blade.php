@@ -12,7 +12,7 @@
 <!-- get user location on page load -->
 <body onload="getLocation()">
 
-<div class="flex px-24 py-5 bg-white fixed inset-x-0 top-0 z-10">
+<div class="flex px-24 py-5 bg-white fixed inset-x-0 top-0 z-30">
     <div class="flex w-1/12 justify-center">
         <a href="/">
             <img src="{{ asset('img/byke-green.png') }}" style="max-width:50%;">
@@ -44,6 +44,19 @@
 </div>
 
     
+    <!-- error display -->
+    <div id="error" class="hidden">
+        <div class="fixed inset-0 z-20 bg-black opacity-75">
+            </div>
+
+        <div class="flex flex-col items-center justify-center fixed inset-0 z-30">
+            <p class="text-6xl font-thin text-white">Oh no!</p>
+            <p class="text-white">Please reload and enable location access.</p>   
+            <a href="/rent" class="mt-6 px-4 py-2 rounded-full bg-green-900 text-white text-center">Reload</a> 
+        </div>
+    </div>
+
+    <!-- map display -->
     <div id="map" class="fixed inset-0 z-0">
     </div>
 
@@ -51,7 +64,7 @@
     <button class="bg-green-500 hover:bg-green-700 text-white font-bold py-4 px-6 rounded-full">
             Rent a Bike
           </button>
-          </div>
+    </div>
 
 
     <script type="text/javascript">
@@ -71,15 +84,17 @@
 
     function getLocation() {
         if (navigator.geolocation) {
-        navigator.geolocation.getCurrentPosition(showPosition);
-    } else { 
-        x.innerHTML = "Geolocation is not supported by this browser.";
-    }
+            navigator.geolocation.getCurrentPosition(showPosition)
+        } else { 
+            x.innerHTML = "Geolocation is not supported by this browser.";
+            document.getElementById("error").style.display = "block";
+        }
     }
 
     function showPosition(position) {
     x.innerHTML = "Latitude: " + position.coords.latitude + 
     "<br>Longitude: " + position.coords.longitude;
+    alert("hello");
 }
     </script>
 
