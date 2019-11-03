@@ -4,7 +4,7 @@ use Illuminate\Database\Migrations\Migration;
 use Illuminate\Database\Schema\Blueprint;
 use Illuminate\Support\Facades\Schema;
 
-class CreateBikesTable extends Migration
+class CreateBikeStationsTable extends Migration
 {
     /**
      * Run the migrations.
@@ -13,8 +13,10 @@ class CreateBikesTable extends Migration
      */
     public function up()
     {
-        Schema::create('bikes', function (Blueprint $table) {
+        Schema::create('bike_stations', function (Blueprint $table) {
             $table->bigIncrements('id');
+            $table->bigInteger('lat');
+            $table->bigInteger('long');
             $table->timestamps();
         });
     }
@@ -26,6 +28,6 @@ class CreateBikesTable extends Migration
      */
     public function down()
     {
-        Schema::dropIfExists('bikes');
+        Schema::dropIfExists('bike_stations');
     }
 }
