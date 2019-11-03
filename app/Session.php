@@ -4,7 +4,7 @@ namespace App;
 
 use Illuminate\Database\Eloquent\Model;
 
-class Answer extends Model
+class Session extends Model
 {
     protected $fillable = [
         'user_id','bike_id' ,'amount'
