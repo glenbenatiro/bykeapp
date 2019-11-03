@@ -5,7 +5,7 @@
         </a>
     </div>
 
-    <ul class="flex w-10/12 justify-center">
+    <ul class="flex w-10/12 justify-center items-center">
         <li class="mr-12">
             <a class="text-glen-gray " href="/rent">Rent</a>
         </li>
@@ -23,7 +23,8 @@
         </li>
     </ul>
 
-    <div class="flex w-1/12">
-        <a class="text-glen-gray " href="#">Login</a>
+    <div class="flex w-1/12 justify-center items-center">
+        <a class="text-glen-gray pr-4 mr-4 border-r-2 border-color-glen-gray" href="/login">Login</a>
+        <a class="text-glen-gray" href="/register">Register</a>
     </div>
 </div>
