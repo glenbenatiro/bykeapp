@@ -51,8 +51,7 @@
 
         <div class="flex flex-col items-center justify-center fixed inset-0 z-30">
             <p class="text-6xl font-thin text-white">Oh no!</p>
-            <p class="text-white">Please reload and enable location access.</p>   
-            <a href="/rent" class="mt-6 px-4 py-2 rounded-full bg-green-900 text-white text-center">Reload</a> 
+            <p class="text-white text-center">You denied access for location request.<br />Please enable it again in your browser.</p>   
         </div>
     </div>
 
@@ -65,7 +64,6 @@
             Rent a Bike
           </button>
     </div>
-
 
     <script type="text/javascript">
       var map = new ol.Map({
@@ -84,10 +82,26 @@
 
     function getLocation() {
         if (navigator.geolocation) {
-            navigator.geolocation.getCurrentPosition(showPosition)
+            navigator.geolocation.getCurrentPosition(showPosition, showError);
         } else { 
             x.innerHTML = "Geolocation is not supported by this browser.";
+        }
+    }
+
+    function showError(error) {
+        switch(error.code) {
+            case error.PERMISSION_DENIED:
             document.getElementById("error").style.display = "block";
+            break;
+            case error.POSITION_UNAVAILABLE:
+            x.innerHTML = "Location information is unavailable."
+            break;
+            case error.TIMEOUT:
+            x.innerHTML = "The request to get user location timed out."
+            break;
+            case error.UNKNOWN_ERROR:
+            x.innerHTML = "An unknown error occurred."
+            break;
         }
     }
 
