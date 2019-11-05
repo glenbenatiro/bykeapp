@@ -15,6 +15,7 @@ class DatabaseSeeder extends Seeder
         DB::table('bike_stations')->insert([
             'lat' => 10.3315,
             'long' => 123.9043,
+            'name' => 'test1',
             'created_at' => Carbon::now()->format('Y-m-d H:i:s'),
             'updated_at' => Carbon::now()->format('Y-m-d H:i:s'),
         ]);
@@ -22,6 +23,7 @@ class DatabaseSeeder extends Seeder
         DB::table('bike_stations')->insert([
             'lat' => 10.331201,
             'long' => 123.905587,
+            'name' => 'test2',
             'created_at' => Carbon::now()->format('Y-m-d H:i:s'),
             'updated_at' => Carbon::now()->format('Y-m-d H:i:s'),
         ]);

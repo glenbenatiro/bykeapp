@@ -5,7 +5,7 @@
       <div class="flex w-1/2 flex-col">
           <p class="text-splash font-bold text-green-600">Bikes.</p>
           <p class="text-splash font-thin">Great for you.<br /> Great for the environment.</p>
-          <a href="/rent" class="mt-6 w-splash text-center text-6xl bg-green-500 hover:bg-green-700 text-white font-bold py-4 px-6 rounded-full">
+          <a href="/rent" class="mt-6 w-splash text-center text-xl bg-green-500 hover:bg-green-700 text-white font-bold py-4 px-6 rounded-full">
             Rent a Bike
           </a>
       </div>
