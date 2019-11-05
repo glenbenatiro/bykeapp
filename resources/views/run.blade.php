@@ -1,0 +1,5 @@
+<?php 
+
+    dd($Rrequest->all()); 
+    
+?>
