@@ -39,8 +39,6 @@ Route::get('/rent', function () {
     return view('rent');
 });
 
-
-
 Auth::routes();
-
 Route::get('/home', 'HomeController@index')->name('home');
+Route::resource('bike-stations', 'BikeStationController');
