@@ -6,8 +6,9 @@ use Illuminate\Database\Eloquent\Model;
 
 class Session extends Model
 {
-    protected $fillable = [
-        'user_id','bike_id' ,'amount'
-    ];
+    protected $table = 'sessions';
 
+    protected $fillable = [
+        'user_id','bike_id' ,'amount','isPresent',
+    ];
 }
