@@ -41,9 +41,5 @@ Route::get('/rent', function () {
 
 Auth::routes();
 Route::get('/home', 'HomeController@index')->name('home');
-<<<<<<< HEAD
-Route::resource('bike-stations', 'BikeStationController');
-=======
 
 Route::get('/run', 'RunController@run');
->>>>>>> 2d15847707d59944f34d125dbc2e4cfb669b1ce2

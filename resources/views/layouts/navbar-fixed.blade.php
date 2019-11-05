@@ -1,9 +1,4 @@
-<<<<<<< HEAD
 <div class="flex px-24 py-5 fixed inset-x-0 y-0 z-50 bg-white">
-=======
-<div class="flex static z-30 px-24 py-5 bg-white">
-<!-- inset-x-0 top-0 -->
->>>>>>> 2d15847707d59944f34d125dbc2e4cfb669b1ce2
     <div class="flex w-1/12 justify-center">
         <a href="/">
             <img src="{{ asset('img/byke-green.png') }}" style="max-width:50%;">
@@ -32,10 +27,4 @@
         <a class="text-glen-gray pr-4 mr-4 border-r-2 border-color-glen-gray" href="/login">Login</a>
         <a class="text-glen-gray" href="/register">Register</a>
     </div>
-<<<<<<< HEAD
 </div>
-=======
-</div>
-
-
->>>>>>> 2d15847707d59944f34d125dbc2e4cfb669b1ce2
