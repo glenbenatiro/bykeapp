@@ -1,28 +1,29 @@
 <!doctype html>
 <html lang="en">
-  <head>
+
+<head>
     <!-- Required meta tags -->
     <meta charset="utf-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
+    <meta name="viewport" content="width=device-width,initial-scale=1, maximum-scale=1, user-scalable=no,shrink-to-fit=no">
 
     <link href="/css/app.css" rel="stylesheet">
 
     <title>Bike Renting Service: Byke Philippines</title>
 
-    @yield('add-head')
-  </head>
+    @yield('head-add')
+</head>
 
-  <body>
+<body>
     <!-- navbar -->
-    @include('layouts.navbar') 
+    @include('layouts.navbar')
 
     <!-- body -->
-    <div class="flex w-full h-screen px-48 py-12">
+    <!-- <div class="flex w-full h-screen px-48 py-12"> -->
     @yield('content')
-    </div>
+    <!-- </div> -->
 
     <!-- footer -->
     @include('layouts.footer')
-  </body>
+</body>
 
 </html>

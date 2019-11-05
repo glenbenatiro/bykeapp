@@ -15,8 +15,9 @@ class CreateBikeStationsTable extends Migration
     {
         Schema::create('bike_stations', function (Blueprint $table) {
             $table->bigIncrements('id');
-            $table->float('lat');
-            $table->float('long');
+            $table->string('name');
+            $table->bigInteger('lat');
+            $table->bigInteger('long');
             $table->timestamps();
         });
     }

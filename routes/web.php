@@ -87,7 +87,6 @@ Route::post('/run', function () {
 });
 
 Auth::routes();
-
 Route::get('/home', 'HomeController@index')->name('home');
 Route::get('/run', 'HomeController@index');
 Route::resource('/test', 'test');
