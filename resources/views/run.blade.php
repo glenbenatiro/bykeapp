@@ -60,6 +60,7 @@
                 console.log("Initial longitude: " + startPos.coords.longitude);
             },
             positionError, positionOptions);
+            
         startRun();
     });
 
@@ -68,7 +69,7 @@
 
         // DEBUG
         console.warn('Running master function.');
-        
+
         // watch user position
         navigator.geolocation.watchPosition(updateLocation, positionError, positionOptions);
     }

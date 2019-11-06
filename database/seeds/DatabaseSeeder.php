@@ -13,17 +13,17 @@ class DatabaseSeeder extends Seeder
     public function run()
     {
         DB::table('bike_stations')->insert([
-            'lat' => 10.3315,
-            'long' => 123.9043,
-            'name' => 'test1',
+            'lat' => 10.327086,
+            'long' => 123.906211,
+            'name' => 'IT Park Station 1',
             'created_at' => Carbon::now()->format('Y-m-d H:i:s'),
             'updated_at' => Carbon::now()->format('Y-m-d H:i:s'),
         ]);
 
         DB::table('bike_stations')->insert([
-            'lat' => 10.331201,
-            'long' => 123.905587,
-            'name' => 'test2',
+            'lat' => 10.332005,
+            'long' => 123.906350,
+            'name' => 'IT Park Station 2',
             'created_at' => Carbon::now()->format('Y-m-d H:i:s'),
             'updated_at' => Carbon::now()->format('Y-m-d H:i:s'),
         ]);

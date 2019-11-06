@@ -1,6 +1,6 @@
 @extends('layouts.map')
 
-@section('add-head')
+@section('head-add')
 <style>
     .marker {
         background-image: url('/img/Bicycle.png');
@@ -88,7 +88,6 @@
     var geojson2 = JSON.parse(geojson);
 
     map.on('load', function (e) {
-
         // get user location
         getLocation();
 
@@ -130,11 +129,9 @@
     function flyToStore(currentFeature) {
         map.flyTo({
             center: currentFeature.geometry.coordinates,
-            zoom: 15
+            zoom: 16
         });
         document.getElementById("stationNumber").value = currentFeature.properties.id;
-        // $("#stationNumber").val(currentFeature.geometry.id);
-        console.log("JIHYO");
     }
 
     function createPopUp(currentFeature) {
@@ -152,7 +149,7 @@
     }
 
     map.on('click', function (e) {
-        console.log("CHAEYOUNG");
+
         // Query all the rendered points in the view
         var features = map.queryRenderedFeatures(e.point, {
             layers: ['locations']
@@ -194,7 +191,7 @@
         map.getCanvas().style.cursor = '';
     });
 
-    // functions
+    // --- functions ---
     function getLocation() {
         if (navigator.geolocation) {
             navigator.geolocation.getCurrentPosition(showPosition);
@@ -204,7 +201,6 @@
     }
 
     function showPosition(position) {
-        alert('success');
     }
 
 </script>
