@@ -15,6 +15,12 @@ module.exports = {
         'glen-gray': '#1f1f1f',
         'maroon': '#800000',
       },
+
+      opacity: {
+       '80': '.8',
+       '90': '.9',
+       '100': '1',
+      },
     },
   },
   variants: {},

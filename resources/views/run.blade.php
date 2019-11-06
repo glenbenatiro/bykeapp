@@ -40,13 +40,13 @@
 
     // draw map
     mapboxgl.accessToken =
-        'pk.eyJ1IjoiZ2xlbmJlbmF0aXJvIiwiYSI6ImNrMmtsZ29wOTIzczYzbHQ4eGE3bW53NWQifQ.GmnVrN9U_c1Rj0lKINEPMQ';
+        'pk.eyJ1IjoiamFyaS1tZXNpbmEiLCJhIjoiY2syZzF6bjdxMGczdzNjbzFqN200OXV5MiJ9.bwOLa4uAkF4mNzmobFHrnQ';
 
     var map = new mapboxgl.Map({
         container: 'map',
-        style: 'mapbox://styles/mapbox/streets-v11',
-        center: [123.906740, 10.329340], // starting position [lng, lat]
-        zoom: 15, // starting zoom
+        style: 'mapbox://styles/mapbox/light-v10',
+        center: [123.9043, 10.3315],
+        zoom: 12
     });
 
     // on map load, get initial user location then run master funtion
