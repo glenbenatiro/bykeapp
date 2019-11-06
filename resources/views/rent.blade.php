@@ -14,8 +14,6 @@
 @endsection
 
 @section('content')
-<!-- get user location on page load -->
-<!-- <body onload="getLocation()"> -->
 <div class="flex px-24 py-5 bg-white fixed inset-x-0 top-0 z-30">
     <div class="flex w-1/12 justify-center">
         <a href="/">
@@ -87,33 +85,17 @@
     });
 
     var geojson = @json($final_data, JSON_NUMERIC_CHECK);
-    console.log(JSON.parse(geojson));
     var geojson2 = JSON.parse(geojson);
-    console.log(geojson2);
 
     map.on('load', function (e) {
-        // Add the data to your map as a layer
-        console.log("Nayeon");
-        // map.addLayer({
-        //     "id": 'locations',
-        //     "type": 'symbol',
-        //     // Add a GeoJSON source containing place coordinates and information.
-        //     "source": {
-        //         "type": 'geojson',
-        //         "data": geojson2
-        //     },
-        //     "layout": {
-        //         'icon-image': "rocket-15",
-        //         'icon-allow-overlap': true,
-        //     }
-        // });
+
+        // get user location
+        getLocation();
 
         map.addSource('places', {
             type: 'geojson',
             data: geojson2
         });
-
-        console.log("TZUYU");
     });
 
     geojson2.features.forEach(function (marker) {
@@ -211,6 +193,19 @@
         console.log("SANA");
         map.getCanvas().style.cursor = '';
     });
+
+    // functions
+    function getLocation() {
+        if (navigator.geolocation) {
+            navigator.geolocation.getCurrentPosition(showPosition);
+        } else {
+            //
+        }
+    }
+
+    function showPosition(position) {
+        alert('success');
+    }
 
 </script>
 @endsection
