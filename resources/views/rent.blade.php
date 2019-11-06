@@ -10,12 +10,16 @@
         cursor: pointer;
     }
 
+    button:focus {
+        outline: 0;
+    }
+
 </style>
 @endsection
 
 @section('content')
 <!-- navbar -->
-<div class="flex fixed m-12 left-0 top-0 z-40  flex-col">
+<div class="flex fixed m-12 left-0 top-0 z-10 flex-col">
     <a href="/" class="text-center text-md bg-green-600 hover:bg-green-700 text-white font-bold py-2 px-4 rounded-full">
         Back to Website
     </a>
@@ -48,24 +52,46 @@
     </div>
 </div>
 
+<!-- duration popup -->
+<div id="durationDiv" class="hidden">
+    <div class="fixed inset-0 z-30 bg-black opacity-90">
+    </div>
+    <div class="flex fixed inset-0 z-40 items-center">
+        <div class="flex w-1/2 justify-center">
+            <p class="text-6xl font-thin text-white">Rent duration</p>
+        </div>
+        <div class="flex flex-col w-1/2 items-center">
+            <button class="text-white text-splash outline-none" onclick="updateDuration(1)">▲</button>
+            <p class="text-white text-splash"><span id="durationVal">1</span> hr</p>
+            <button class="text-white text-splash" onclick="updateDuration(-1)">▼</button>
+        </div>
+        <div class="flex fixed inset-x-0 bottom-0 py-12 justify-center">
+            <button
+                class="mr-12 text-center text-md bg-green-600 hover:bg-green-700 text-white font-bold py-2 px-4 rounded-full"
+                onclick="closeDiv('durationDiv')">Back</button>
+            <button
+                class="text-center text-md bg-green-600 hover:bg-green-700 text-white font-bold py-2 px-4 rounded-full">
+                Proceed to Payment
+            </button>
+        </div>
+    </div>
+</div>
+
 <!-- map display -->
 <div id="map" style="position:fixed;top:0;bottom:0;width:100%;">
 </div>
 
 <!-- buttons -->
-<div class="flex fixed inset-x-0 bottom-0 z-50 p-12 justify-center">
-    <a href="/" class="text-center text-md bg-green-600 hover:bg-green-700 text-white font-bold py-2 px-4 rounded-full">
-        Select Bike Station <span id="selectedBikeStationId">0</span>
-    </a>
+<div class="flex fixed inset-x-0 bottom-0 z-10 p-12 justify-center">
+    <button class="text-center text-md bg-green-600 hover:bg-green-700 text-white font-bold py-2 px-4 rounded-full"
+        id="rentButton" onclick="getDuration()">Select Bike Station <span id="selectedBikeStationId">0</span>
+    </button>
 </div>
 
 
 <form action="{{ url('/test')}}" method="post" class="hidden">
     @csrf
     <div class="flex py-12 fixed inset-x-0 bottom-0 z-10 justify-center">
-        <!-- <button class="bg-green-500 hover:bg-green-700 text-white font-bold py-4 px-6 rounded-full">
-            Rent a Bike
-        </button> -->
         <input type="hidden" id="stationNumber" name="stationNumber">
         <input type="submit" class="bg-green-500 hover:bg-green-700 text-white font-bold py-4 px-6 rounded-full"
             value="Rent a bike">
@@ -129,6 +155,7 @@
             createPopUp(marker);
             /// 3. updated rent button
             document.getElementById("selectedBikeStationId").innerHTML = marker.properties.id;
+            document.getElementById("rentButton").style.display = 'flex';
         });
 
     });
@@ -156,6 +183,18 @@
     }
 
     // --- functions ---
+    function getDuration() {
+        document.getElementById('durationDiv').style.display = 'flex';
+    }
+
+    function updateDuration(update) {
+        var val = parseInt(document.getElementById('durationVal').innerHTML);
+
+        if (val + update >= 1 && val + update <= 12)
+            document.getElementById('durationVal').innerHTML = val + update;
+
+    }
+
     function getLocation() {
         if (navigator.geolocation) {
             navigator.geolocation.getCurrentPosition(showPosition);
@@ -165,6 +204,15 @@
     }
 
     function showPosition(position) {}
+
+    function closeDiv(el) {
+        document.getElementById(el).style.display = 'none';
+    }
+
+
+    function test(el) {
+        alert(el);
+    }
 
 </script>
 @endsection
