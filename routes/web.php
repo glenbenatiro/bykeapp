@@ -1,7 +1,5 @@
 <?php
 
-use App\BikeStations;
-
 /*
 |--------------------------------------------------------------------------
 | Web Routes
@@ -47,6 +45,8 @@ Route::get('/run', function () {
     return view('run');
 });
 
+Route::post('/run', 'RunController@run');
+
 Auth::routes();
 Route::get('/home', 'HomeController@index')->name('home');
 Route::resource('/test', 'test');
@@ -54,4 +54,10 @@ Route::resource('/test', 'test');
 // payment routes
 Route::get('/payments', 'PaymentController@getUserDetails');
 Route::post('/payments', 'PaymentController@storeUserDetails');
-Route::get('/logout', 'LogoutController@logout');
+
+
+// logout
+Route::get('/logout', function () {
+    Auth::logout();
+    return redirect('/');
+});

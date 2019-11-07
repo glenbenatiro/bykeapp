@@ -42,13 +42,12 @@
 </div>
 
 <!-- payment div -->
-<div id="paymaya" class="flex fixed inset-0 z-50 bg-black opacity-90 justify-center items-center hidden">
+<!-- <div id="paymaya" class="flex fixed inset-0 z-50 bg-black opacity-90 justify-center items-center hidden">
 
-</div>
+</div> -->
 
 <!-- error display -->
 <div id="error" class="hidden">
-
     <div class="fixed inset-0 z-40 bg-black opacity-90">
     </div>
 
@@ -76,10 +75,16 @@
             <button
                 class="mr-12 text-center text-md bg-green-600 hover:bg-green-700 text-white font-bold py-2 px-4 rounded-full"
                 onclick="closeDiv('durationDiv')">Back</button>
-            <button
-                class="text-center text-md bg-green-600 hover:bg-green-700 text-white font-bold py-2 px-4 rounded-full">
-                Proceed to Payment
-            </button>
+
+            <form method="post" action="/run">
+                @csrf
+
+                <input type="hidden" id="bikeStation" name="bikeStation">
+                <button type="submit"
+                    class="text-center text-md bg-green-600 hover:bg-green-700 text-white font-bold py-2 px-4 rounded-full">
+                    Rent
+                </button>
+            </form>
         </div>
     </div>
 </div>
@@ -90,22 +95,13 @@
 
 <!-- buttons -->
 <div class="flex fixed inset-x-0 bottom-0 z-10 p-12 justify-center">
-    <button class="text-center text-md bg-green-600 hover:bg-green-700 text-white font-bold py-2 px-4 rounded-full"
+    <button class="text-center text-md bg-green-600 hover:bg-green-700 text-white font-bold py-2 px-4 rounded-full hidden"
         id="rentButton" onclick="getDuration()">Select Bike Station <span id="selectedBikeStationId">0</span>
     </button>
 </div>
 
-
-<form action="{{ url('/test')}}" method="post" class="hidden">
-    @csrf
-    <div class="flex py-12 fixed inset-x-0 bottom-0 z-10 justify-center">
-        <input type="hidden" id="stationNumber" name="stationNumber">
-        <input type="submit" class="bg-green-500 hover:bg-green-700 text-white font-bold py-4 px-6 rounded-full"
-            value="Rent a bike">
-    </div>
-</form>
-
 <script type="text/javascript">
+    // global variables
     var selectedStation = 0;
 
     mapboxgl.accessToken =
@@ -154,7 +150,6 @@
             .addTo(map);
 
         el.addEventListener('click', function (e) {
-            var activeItem = document.getElementsByClassName('active');
             // 1. Fly to the point
             flyToStore(marker);
             // 2. Close all other popups and display popup for clicked store
@@ -162,6 +157,8 @@
             /// 3. updated rent button
             document.getElementById("selectedBikeStationId").innerHTML = marker.properties.id;
             document.getElementById("rentButton").style.display = 'flex';
+            document.getElementById('bikeStation').value = marker.properties.id;
+   
         });
 
     });
@@ -171,7 +168,6 @@
             center: currentFeature.geometry.coordinates,
             zoom: 15
         });
-        document.getElementById("stationNumber").value = currentFeature.properties.id;
     }
 
     function createPopUp(currentFeature) {
@@ -191,6 +187,7 @@
     // --- functions ---
     function getDuration() {
         document.getElementById('durationDiv').style.display = 'flex';
+
     }
 
     function updateDuration(update) {

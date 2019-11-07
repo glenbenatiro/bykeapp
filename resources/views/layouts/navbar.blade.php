@@ -24,8 +24,14 @@
     </ul>
 
     <div class="flex w-1/12 justify-center items-center">
+        @auth
+        <a class="text-glen-gray pr-4 mr-4 border-r-2 border-color-glen-gray" href="/login">Account</a>
+        <a class="text-glen-gray" href="/logout">Logout</a>
+        @endauth
+        
+        @guest
         <a class="text-glen-gray pr-4 mr-4 border-r-2 border-color-glen-gray" href="/login">Login</a>
         <a class="text-glen-gray" href="/register">Register</a>
-        <a class="text-glen-gray" href="/logout">Logout</a>
+        @endguest
     </div>
 </div>

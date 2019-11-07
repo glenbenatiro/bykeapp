@@ -1,11 +1,15 @@
 @extends('layouts.map')
 
 @section('content')
+@php
+dd($data);
+@endphp
 <!-- emergency button -->
 <div class="flex fixed m-12 px-3 py-2 rounded-lg left-0 top-0 z-40 bg-white opacity-75 flex-col">
     <img src="{{ asset('img/byke-green.png') }}" class="w-24 mb-2">
     <p class="">Distance Travelled:</p>
-    <p id="distance">0</p><p class="inline">km</p>
+    <p id="distance">0</p>
+    <p class="inline">km</p>
     <p>Time Remaining:</p>
     <div id="time"></div>
     <p>Fare: ₱30</p>

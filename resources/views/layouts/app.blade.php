@@ -19,8 +19,8 @@
     @include('layouts.navbar')
 
     <!-- body -->
-    <div class="flex w-full h-screen px-48 py-12">
-        @yield('content')
+    <div class="flex flex-col w-full h-screen px-48 py-12 items-center">
+    @yield('content')
     </div>
 
     <!-- footer -->
