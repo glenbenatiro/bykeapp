@@ -20,7 +20,7 @@ class CreateSessionsTable extends Migration
             $table->unsignedBigInteger('bike_id');
             $table->foreign('bike_id')->references('id')->on('bikes')->onDelete('cascade');
             $table->bigInteger('amount');
-            $table->bigInteger('isPresent');
+            $table->bigInteger('isActive');
             $table->timestamps();
         });
     }

@@ -20,7 +20,8 @@ class CreateBikesTable extends Migration
             $table->unsignedBigInteger('stations_id');
             $table->foreign('stations_id')->references('id')->on('bike_stations')->onDelete('cascade');
             $table->string('last_maintenance_check');
-            $table->bigInteger('isUsed');
+            $table->bigInteger('isInUse');
+            $table->string('contactNumber');
             $table->timestamps();
         });
     }

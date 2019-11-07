@@ -44,8 +44,9 @@ class DatabaseSeeder extends Seeder
         DB::table('bikes')->insert([
             'user_id' => 1,
             'stations_id' => 2,
-            'isUsed' => 1,
+            'isInUse' => 1,
             'last_maintenance_check' => Carbon::now()->format('Y-m-d H:i:s'),
+            'contactNumber' => "09224889195",
             'created_at' => Carbon::now()->format('Y-m-d H:i:s'),
             'updated_at' => Carbon::now()->format('Y-m-d H:i:s'),
         ]);
@@ -53,8 +54,9 @@ class DatabaseSeeder extends Seeder
         DB::table('bikes')->insert([
             'user_id' => 1,
             'stations_id' => 2,
-            'isUsed' => 1,
+            'isInUse' => 1,
             'last_maintenance_check' => Carbon::now()->format('Y-m-d H:i:s'),
+            'contactNumber' => "09233945232",
             'created_at' => Carbon::now()->format('Y-m-d H:i:s'),
             'updated_at' => Carbon::now()->format('Y-m-d H:i:s'),
         ]);
@@ -62,8 +64,9 @@ class DatabaseSeeder extends Seeder
         DB::table('bikes')->insert([
             'user_id' => 1,
             'stations_id' => 2,
-            'isUsed' => 0,
+            'isInUse' => 0,
             'last_maintenance_check' => Carbon::now()->format('Y-m-d H:i:s'),
+            'contactNumber' => "09233945232",
             'created_at' => Carbon::now()->format('Y-m-d H:i:s'),
             'updated_at' => Carbon::now()->format('Y-m-d H:i:s'),
         ]);
@@ -71,8 +74,9 @@ class DatabaseSeeder extends Seeder
         DB::table('bikes')->insert([
             'user_id' => 1,
             'stations_id' => 2,
-            'isUsed' => 0,
+            'isInUse' => 0,
             'last_maintenance_check' => Carbon::now()->format('Y-m-d H:i:s'),
+            'contactNumber' => "09233945232",
             'created_at' => Carbon::now()->format('Y-m-d H:i:s'),
             'updated_at' => Carbon::now()->format('Y-m-d H:i:s'),
         ]);
@@ -80,8 +84,9 @@ class DatabaseSeeder extends Seeder
         DB::table('bikes')->insert([
             'user_id' => 1,
             'stations_id' => 2,
-            'isUsed' => 0,
+            'isInUse' => 0,
             'last_maintenance_check' => Carbon::now()->format('Y-m-d H:i:s'),
+            'contactNumber' => "09233945232",
             'created_at' => Carbon::now()->format('Y-m-d H:i:s'),
             'updated_at' => Carbon::now()->format('Y-m-d H:i:s'),
         ]);
@@ -89,8 +94,9 @@ class DatabaseSeeder extends Seeder
         DB::table('bikes')->insert([
             'user_id' => 1,
             'stations_id' => 1,
-            'isUsed' => 0,
+            'isInUse' => 0,
             'last_maintenance_check' => Carbon::now()->format('Y-m-d H:i:s'),
+            'contactNumber' => "09233945232",
             'created_at' => Carbon::now()->format('Y-m-d H:i:s'),
             'updated_at' => Carbon::now()->format('Y-m-d H:i:s'),
         ]);
@@ -99,7 +105,7 @@ class DatabaseSeeder extends Seeder
             'user_id' => 1,
             'bike_id' => 1,
             'amount' => 100,
-            'isPresent' => 1,
+            'isActive' => 1,
             'created_at' => Carbon::now()->format('Y-m-d H:i:s'),
             'updated_at' => Carbon::now()->format('Y-m-d H:i:s'),
         ]);
@@ -108,7 +114,7 @@ class DatabaseSeeder extends Seeder
             'user_id' => 1,
             'bike_id' => 2,
             'amount' => 200,
-            'isPresent' => 1,
+            'isActive' => 1,
             'created_at' => Carbon::now()->format('Y-m-d H:i:s'),
             'updated_at' => Carbon::now()->format('Y-m-d H:i:s'),
         ]);
