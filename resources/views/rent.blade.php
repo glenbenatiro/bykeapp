@@ -33,11 +33,6 @@
         <div class="flex">
             <p>Select a bike station.</p>
         </div>
-
-        <!-- Step 2 -->
-        <div class="flex">
-            <p>Input how many </p>
-        </div>
     </div>
 </div>
 
@@ -62,14 +57,20 @@
 <div id="durationDiv" class="hidden">
     <div class="fixed inset-0 z-30 bg-black opacity-90">
     </div>
+
+    <div class="flex fixed inset-x-0 top-0 z-40 py-12 justify-center">
+        <p class="text-white text-3xl font-light">Choose your duration of rent</p>
+    </div>
+
     <div class="flex fixed inset-0 z-40 items-center">
-        <div class="flex w-1/2 justify-center">
-            <p class="text-6xl font-thin text-white">Rent duration</p>
-        </div>
         <div class="flex flex-col w-1/2 items-center">
             <button class="text-white text-splash outline-none" onclick="updateDuration(1)">▲</button>
-            <p class="text-white text-splash"><span id="durationVal">1</span> hr</p>
+            <p class="text-white text-splash font-light"><span id="durationVal">1</span> hr</p>
             <button class="text-white text-splash" onclick="updateDuration(-1)">▼</button>
+        </div>
+        <div class="flex flex-col w-1/2 justify-center">
+            <p class="text-xl text-white text-center">Rate:</p>
+            <p class="text-splash font-light text-white text-center">₱<span id="amountDisp">30</span></p>
         </div>
         <div class="flex fixed inset-x-0 bottom-0 py-12 justify-center">
             <button
@@ -80,6 +81,7 @@
                 @csrf
 
                 <input type="hidden" id="bikeStation" name="bikeStation">
+                <input type="hidden" id="duration" name="duration">
                 <button type="submit"
                     class="text-center text-md bg-green-600 hover:bg-green-700 text-white font-bold py-2 px-4 rounded-full">
                     Rent
@@ -95,7 +97,8 @@
 
 <!-- buttons -->
 <div class="flex fixed inset-x-0 bottom-0 z-10 p-12 justify-center">
-    <button class="text-center text-md bg-green-600 hover:bg-green-700 text-white font-bold py-2 px-4 rounded-full hidden"
+    <button
+        class="text-center text-md bg-green-600 hover:bg-green-700 text-white font-bold py-2 px-4 rounded-full hidden"
         id="rentButton" onclick="getDuration()">Select Bike Station <span id="selectedBikeStationId">0</span>
     </button>
 </div>
@@ -103,6 +106,10 @@
 <script type="text/javascript">
     // global variables
     var selectedStation = 0;
+    var price = 30;
+
+    // init
+    document.getElementById('duration').value = 1;
 
     mapboxgl.accessToken =
         'pk.eyJ1IjoiamFyaS1tZXNpbmEiLCJhIjoiY2syZzF6bjdxMGczdzNjbzFqN200OXV5MiJ9.bwOLa4uAkF4mNzmobFHrnQ';
@@ -158,7 +165,7 @@
             document.getElementById("selectedBikeStationId").innerHTML = marker.properties.id;
             document.getElementById("rentButton").style.display = 'flex';
             document.getElementById('bikeStation').value = marker.properties.id;
-   
+
         });
 
     });
@@ -190,12 +197,14 @@
 
     }
 
+    // update duration of hour and rate displays as user clicks on up or down arrow
     function updateDuration(update) {
-        var val = parseInt(document.getElementById('durationVal').innerHTML);
+        var newDuration = parseInt(document.getElementById('durationVal').innerHTML) + update;
 
-        if (val + update >= 1 && val + update <= 12)
-            document.getElementById('durationVal').innerHTML = val + update;
-
+        if (newDuration >= 1 && newDuration <= 12) {
+            document.getElementById('duration').value = document.getElementById('durationVal').innerHTML = newDuration;
+            document.getElementById('amountDisp').innerHTML = newDuration * price;
+        }
     }
 
     function getLocation() {
