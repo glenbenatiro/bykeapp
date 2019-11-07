@@ -6,6 +6,7 @@ use DB;
 use Auth;
 use App\Bike;
 use App\Instance;
+use App\BikeStation;
 use Carbon\Carbon;
 use Illuminate\Http\Request;
 
@@ -13,6 +14,7 @@ class RunController extends Controller
 {
     public function run(Request $request)
     {
+
         // price per hour
         $price = 30;
 
@@ -33,6 +35,31 @@ class RunController extends Controller
         $instance->isActive = 1;       
         $instance->save();
         
-        return view('run.run', compact("instance"));
+        // get bikestations json data
+
+        $bikeStations = BikeStation::all();
+
+        $original_json_string = $bikeStations;
+        $original_data = json_decode($original_json_string, true);
+        $features = array();
+        $features2 = array();
+
+        foreach($original_data as $key => $value) {
+            $coordinates = array('0' => $value['long'], '1' => $value['lat']);
+            $features[] = array(
+                'type' => 'Feature',
+                'geometry' => array('type' => 'Point', 'coordinates' => $coordinates),
+                'properties' => array('title' => 'IT Park','id'=>$value['id']),
+            );
+        }
+
+        $new_data = array(
+            'type' => 'FeatureCollection',
+            'features' => $features,
+        );
+
+    
+        $final_data = json_encode($new_data, JSON_PRETTY_PRINT);
+        return view('run.run', compact("instance", "final_data"));
     }
 }

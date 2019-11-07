@@ -1,22 +1,36 @@
 @extends('layouts.map')
 
+@section('head-add')
+<style>
+    .marker {
+        background-image: url('/img/bike.png');
+        background-size: cover;
+        width: 70px;
+        height: 70px;
+        cursor: pointer;
+    }
+
+    button:focus {
+        outline: 0;
+    }
+
+</style>
+@endsection
+
 @section('content')
-@php
-dd($data);
-@endphp
 <!-- emergency button -->
 <div class="flex fixed m-12 px-3 py-2 rounded-lg left-0 top-0 z-40 bg-white opacity-75 flex-col">
     <img src="{{ asset('img/byke-green.png') }}" class="w-24 mb-2">
-    <p class="">Distance Travelled:</p>
-    <p id="distance">0</p>
-    <p class="inline">km</p>
+    <p class="">Started at:</p>
+    <p>{{$instance->created_at}}</p>
     <p>Time Remaining:</p>
     <div id="time"></div>
-    <p>Fare: ₱30</p>
+    <p>Fare: ₱{{$instance->totalFare}}</p>
 </div>
 
-<!-- map -->
-<div id="map" style="position:fixed;top:0;bottom:0;width:100%;"></div>
+<!-- map display -->
+<div id="map" style="position:fixed;top:0;bottom:0;width:100%;">
+</div>
 
 <!-- buttons -->
 <div class="flex fixed inset-x-0 bottom-0 z-50 p-12 justify-between">
@@ -34,15 +48,31 @@ dd($data);
     document.addEventListener('DOMContentLoaded', getLocation(), false);
 
     mapboxgl.accessToken =
-        'pk.eyJ1IjoiZ2xlbmJlbmF0aXJvIiwiYSI6ImNrMmtsZ29wOTIzczYzbHQ4eGE3bW53NWQifQ.GmnVrN9U_c1Rj0lKINEPMQ';
+        'pk.eyJ1IjoiamFyaS1tZXNpbmEiLCJhIjoiY2syZzF6bjdxMGczdzNjbzFqN200OXV5MiJ9.bwOLa4uAkF4mNzmobFHrnQ';
 
     var map = new mapboxgl.Map({
         container: 'map',
-        style: 'mapbox://styles/mapbox/streets-v11',
-        center: [123.906740, 10.329340], // starting position [lng, lat]
-        zoom: 15, // starting zoom
+        style: 'mapbox://styles/mapbox/light-v10',
+        center: [123.9043, 10.3315],
+        zoom: 12
     });
 
+    var geojson = @json($final_data, JSON_NUMERIC_CHECK);
+    var geojson2 = JSON.parse(geojson);
+
+    map.on('load', function (e) {
+        // get user location
+        //getLocation();
+
+        // populate map with bike station location coordinates
+        map.addSource('places', {
+            type: 'geojson',
+            data: geojson2
+        });
+    });
+
+    // add map controls
+    map.addControl(new mapboxgl.NavigationControl());
     map.addControl(new mapboxgl.GeolocateControl({
         positionOptions: {
             enableHighAccuracy: true
@@ -50,7 +80,45 @@ dd($data);
         trackUserLocation: true
     }));
 
-    map.addControl(new mapboxgl.NavigationControl());
+    // render bike icons and click functionality
+    geojson2.features.forEach(function (marker) {
+        // create a HTML element for each feature
+        var el = document.createElement('div');
+        el.className = 'marker';
+
+        // make a marker for each feature and add to the map
+        new mapboxgl.Marker(el)
+            .setLngLat(marker.geometry.coordinates)
+            .addTo(map);
+
+        el.addEventListener('click', function (e) {
+            // 1. Fly to the point
+            flyToStore(marker);
+            // 2. Close all other popups and display popup for clicked store
+            createPopUp(marker);
+        });
+    });
+
+    function flyToStore(currentFeature) {
+        map.flyTo({
+            center: currentFeature.geometry.coordinates,
+            zoom: 15
+        });
+    }
+
+    function createPopUp(currentFeature) {
+        var popUps = document.getElementsByClassName('mapboxgl-popup');
+        // Check if there is already a popup on the map and if so, remove it
+        if (popUps[0]) popUps[0].remove();
+
+        var popup = new mapboxgl.Popup({
+                closeOnClick: false,
+            })
+            .setLngLat(currentFeature.geometry.coordinates)
+            .setHTML('<p class="text-xl">Byke Station</p>' + '<h3>' + currentFeature.properties.id + '</h3>' +
+                '<h4>' + currentFeature.properties.title + '</h4>')
+            .addTo(map);
+    }
 
     function getLocation() {
         if (navigator.geolocation) {
@@ -70,7 +138,7 @@ dd($data);
     }
 
     // Set the date we're counting down to
-    var countDownDate = new Date("Nov 5, 2019 20:00:00").getTime();
+    var countDownDate = new Date("Nov 5, 2020 20:00:00").getTime();
 
     // Update the count down every 1 second
     var x = setInterval(function () {
