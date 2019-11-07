@@ -40,6 +40,27 @@
                         </div>
 
                         <div class="form-group row">
+                            <div class="col-md-6">
+                                <p>Phone Number</p>
+                                <input id="phone" type="phone" name="phone"> 
+                            </div>
+                        </div>
+
+                        <div class="form-group row">
+                            <div class="col-md-6">
+                                <p>First Name</p>
+                                <input id="first" type="first" name="first"> 
+                            </div>
+                        </div>
+
+                        <div class="form-group row">
+                            <div class="col-md-6">
+                                <p>Last Name</p>
+                                <input id="last" type="last" name="last"> 
+                            </div>
+                        </div>
+
+                        <div class="form-group row">
                             <label for="password" class="col-md-4 col-form-label text-md-right">{{ __('Password') }}</label>
 
                             <div class="col-md-6">

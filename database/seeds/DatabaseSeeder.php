@@ -41,6 +41,19 @@ class DatabaseSeeder extends Seeder
             'updated_at' => Carbon::now()->format('Y-m-d H:i:s'),
         ]);
 
+        DB::table('users')->insert([
+            'username' => "glenben",
+            'password' => bcrypt('09876543'),
+            'email' => "glen@gmail.com",
+            'phone' => 123456789,
+            'first_name' => 'Glen',
+            'last_name' => 'Benatiro',
+            'email_verified_at' => Carbon::now()->format('Y-m-d H:i:s'),
+            'distance_travelled' => 123,
+            'created_at' => Carbon::now()->format('Y-m-d H:i:s'),
+            'updated_at' => Carbon::now()->format('Y-m-d H:i:s'),
+        ]);
+
         DB::table('bikes')->insert([
             'user_id' => 1,
             'stations_id' => 2,
@@ -106,15 +119,21 @@ class DatabaseSeeder extends Seeder
             'bike_id' => 1,
             'amount' => 100,
             'isActive' => 1,
+            'total_distance_travelled' => 4,
+            'time_started' => '8:30',
+            'time_ended' => '10:00',
             'created_at' => Carbon::now()->format('Y-m-d H:i:s'),
             'updated_at' => Carbon::now()->format('Y-m-d H:i:s'),
         ]);
 
         DB::table('sessions')->insert([
-            'user_id' => 1,
+            'user_id' => 2,
             'bike_id' => 2,
             'amount' => 200,
-            'isActive' => 1,
+            'isActive' => 0,
+            'total_distance_travelled' => 3,
+            'time_started' => '11:00',
+            'time_ended' => '12:00',
             'created_at' => Carbon::now()->format('Y-m-d H:i:s'),
             'updated_at' => Carbon::now()->format('Y-m-d H:i:s'),
         ]);

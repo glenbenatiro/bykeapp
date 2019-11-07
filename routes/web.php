@@ -13,6 +13,8 @@ use App\BikeStations;
 |
 */
 
+Route::get('/end', 'EndController@index');
+
 Route::get('/', function () {
     return view('welcome');
 });
