@@ -29,8 +29,10 @@ class RentController extends Controller
             'type' => 'FeatureCollection',
             'features' => $features,
         );
+
     
         $final_data = json_encode($new_data, JSON_PRETTY_PRINT);
         return view('rent')->with(compact('final_data'));
+
     }
 }

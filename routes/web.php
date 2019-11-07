@@ -50,3 +50,7 @@ Route::get('/run', function () {
 Auth::routes();
 Route::get('/home', 'HomeController@index')->name('home');
 Route::resource('/test', 'test');
+
+// payment routes
+Route::get('/payments', 'PaymentController@getUserDetails');
+Route::post('/payments', 'PaymentController@storeUserDetails');
