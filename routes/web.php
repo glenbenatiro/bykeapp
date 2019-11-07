@@ -40,7 +40,7 @@ Route::get('/help-center', function () {
 });
 
 
-Route::get('/rent', 'RentController@index');
+Route::get('/rent', 'RentController@index')->middleware('auth');
     
 
 Route::get('/run', function () {
@@ -54,3 +54,4 @@ Route::resource('/test', 'test');
 // payment routes
 Route::get('/payments', 'PaymentController@getUserDetails');
 Route::post('/payments', 'PaymentController@storeUserDetails');
+Route::get('/logout', 'LogoutController@logout');

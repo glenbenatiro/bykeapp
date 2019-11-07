@@ -42,7 +42,7 @@
 </div>
 
 <!-- payment div -->
-<div id="paymaya" class="flex fixed inset-0 z-50 bg-black opacity-90 justify-center items-center">
+<div id="paymaya" class="flex fixed inset-0 z-50 bg-black opacity-90 justify-center items-center hidden">
 
 </div>
 
