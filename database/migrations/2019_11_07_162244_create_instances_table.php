@@ -23,8 +23,8 @@ class CreateInstancesTable extends Migration
             $table->tinyInteger('duration');
             $table->smallInteger('totalFare');
             $table->boolean('isActive');
-            $table->dateTime('ended_at');
-            $table->unsignedBigInteger('total_distance');
+            $table->dateTime('ended_at')->nullable();
+            $table->unsignedBigInteger('total_distance')->nullable();
 
             $table->foreign('user_id')->references('id')->on('users')->onDelete('cascade');
             $table->foreign('bike_id')->references('id')->on('bikes')->onDelete('cascade');

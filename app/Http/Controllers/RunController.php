@@ -5,6 +5,7 @@ namespace App\Http\Controllers;
 use DB;
 use Auth;
 use App\Bike;
+use App\Instance;
 use Carbon\Carbon;
 use Illuminate\Http\Request;
 
@@ -15,9 +16,6 @@ class RunController extends Controller
         // price per hour
         $price = 30;
 
-        //DEBUG
-        dd($request->all());
-
         // find the first free bike in the station id
         $freeBike = Bike::all()->where('stations_id', $request->bikeStation)->where('isInUse', 0)->first();
 
@@ -26,17 +24,15 @@ class RunController extends Controller
         // $bike->isInUse = 1;
         // $bike->save();
 
-        // store in session
-        DB::table('sessions')->insert([
-            'user_id' => Auth::id(),
-            'bike_id' => $freeBike->id,
-            'amount' => $price * $request->duration,
-            'isActive' => 1,
-            'total_distance_travelled' => 0,
-            'time_started' => Carbon::now(),
-            'time_ended' => '',
-        ]);
+        $instance = new Instance;
+        $instance->user_id = Auth::id();
+        $instance->bike_id = $bike->id;
+        $instance->station_id = $request->bikeStation;
+        $instance->duration = $request->duration;
+        $instance->totalFare = $request->duration * $price; 
+        $instance->isActive = 1;       
+        $instance->save();
         
-        return view('run.run', compact("data"));
+        return view('run.run', compact("instance"));
     }
 }
