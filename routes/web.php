@@ -61,6 +61,8 @@ Route::get('/test', 'test@itexmo');
 Route::get('/payments', 'PaymentController@getUserDetails');
 Route::post('/payments', 'PaymentController@storeUserDetails');
 
+Route::resource('users', 'UserController');
+
 
 // logout
 Route::get('/logout', function () {
