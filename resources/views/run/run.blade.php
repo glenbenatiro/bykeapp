@@ -21,11 +21,13 @@
 <!-- emergency button -->
 <div class="flex fixed m-12 px-3 py-2 rounded-lg left-0 top-0 z-40 bg-white opacity-75 flex-col">
     <img src="{{ asset('img/byke-green.png') }}" class="w-24 mb-2">
-    <p class="">Started at:</p>
-    <p>{{$instance->created_at}}</p>
+    <p>Duration:</p>
+    <p><span id="duration">{{$instance->duration}}</span> hr</p>
     <p>Time Remaining:</p>
     <div id="time"></div>
     <p>Fare: ₱{{$instance->totalFare}}</p>
+    <p>Distance Travelled:</p>
+    <p><span id="distance">0</span> KM</p>
 </div>
 
 <!-- map display -->
@@ -45,7 +47,19 @@
 </div>
 
 <script>
-    document.addEventListener('DOMContentLoaded', getLocation(), false);
+    var currPos;
+    var lastPos;
+    var distanceTravelled = 0;
+
+    // initial url
+    var url = {
+        "geometry": {
+            "type": "Point",
+            "coordinates": [123.885437, 10.315699]
+        },
+        "type": "Feature",
+        "properties": {}
+    };
 
     mapboxgl.accessToken =
         'pk.eyJ1IjoiamFyaS1tZXNpbmEiLCJhIjoiY2syZzF6bjdxMGczdzNjbzFqN200OXV5MiJ9.bwOLa4uAkF4mNzmobFHrnQ';
@@ -61,16 +75,51 @@
     var geojson2 = JSON.parse(geojson);
 
     map.on('load', function (e) {
-        // get user location
-        //getLocation();
-
         // populate map with bike station location coordinates
+        console.log('populate map with bike station locations');
         map.addSource('places', {
             type: 'geojson',
             data: geojson2
         });
+
+        //DEBUG
+        console.log('get initial lastpos');
+        navigator.geolocation.getCurrentPosition(function (pos) {
+            lastPos = pos;
+            console.log('hello');
+            console.log('lastPos LatLong: ' + lastPos.coords.latitude + ', ' + lastPos.coords
+                .longitude);
+        }, errorPos, {
+            enableHighAccuracy: true,
+        });
+
+        window.setInterval(function () {
+            map.getSource('bike').setData(url);
+            console.log('update');
+        }, 1000);
+
+        map.addSource('bike', {
+            type: 'geojson',
+            data: url
+        });
+        map.addLayer({
+            "id": "bike",
+            "type": "symbol",
+            "source": "bike",
+            "layout": {
+                "icon-image": "rocket-15"
+            }
+        });
     });
 
+    function errorPos(err) {
+        if (err.code)
+            console.log('PERMISSION_DENIED');
+        else if (err.code == 2)
+            console.log('POSITION_UNAVAILABLE');
+        else if (err.code == 3)
+            console.log('TIMEOUT');
+    }
     // add map controls
     map.addControl(new mapboxgl.NavigationControl());
     map.addControl(new mapboxgl.GeolocateControl({
@@ -120,25 +169,10 @@
             .addTo(map);
     }
 
-    function getLocation() {
-        if (navigator.geolocation) {
-            var startPos;
 
-            navigator.geolocation.getCurrentPosition(function (position) {
-                startPos = position;
-            });
-        } else {
-            x.innerHTML = "Geolocation is not supported by this browser.";
-        }
-    }
-
-    function showPosition(position) {
-        x.innerHTML = "Latitude: " + position.coords.latitude +
-            "<br>Longitude: " + position.coords.longitude;
-    }
 
     // Set the date we're counting down to
-    var countDownDate = new Date("Nov 5, 2020 20:00:00").getTime();
+    var countDownDate = new Date().getTime() + (parseInt({{$instance->duration}}) * 3600 * 1000);
 
     // Update the count down every 1 second
     var x = setInterval(function () {
@@ -148,6 +182,7 @@
 
         // Find the distance between now and the count down date
         var distance = countDownDate - now;
+        console.log('distance: ' + distance);
 
         // Time calculations for days, hours, minutes and seconds
         var hours = Math.floor((distance % (1000 * 60 * 60 * 24)) / (1000 * 60 * 60));
@@ -167,10 +202,28 @@
 
     // calculate distance travelled
     navigator.geolocation.watchPosition(function (position) {
-        // same as above
-        document.getElementById('distance').innerHTML =
-            calculateDistance(startPos.coords.latitude, startPos.coords.longitude,
-                position.coords.latitude, position.coords.longitude);
+        // set new url object with updated coords
+        console.log('url update');
+        url = {
+            "geometry": {
+                "type": "Point",
+                "coordinates": [position.coords.longitude, position.coords.latitude]
+            },
+            "type": "Feature",
+            "properties": {}
+        }
+
+        // calculate distance then add to total distance travelled
+        distanceTravelled += calculateDistance(lastPos.coords.latitude, lastPos.coords.longitude,
+            position.coords.latitude, position.coords.longitude);
+
+        // set lastpos to current position
+        lastPos = position;
+
+        // update total distance display
+        document.getElementById('distance').innerHTML = distanceTravelled.toFixed(3);
+    }, errorPos, {
+        enableHighAccuracy: true,
     });
 
     function calculateDistance(lat1, lon1, lat2, lon2) {
@@ -184,6 +237,7 @@
         var d = R * c;
         return d;
     }
+
     Number.prototype.toRad = function () {
         return this * Math.PI / 180;
     }

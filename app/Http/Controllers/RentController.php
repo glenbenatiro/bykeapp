@@ -33,6 +33,5 @@ class RentController extends Controller
     
         $final_data = json_encode($new_data, JSON_PRETTY_PRINT);
         return view('rent')->with(compact('final_data'));
-
     }
 }
