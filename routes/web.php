@@ -10,6 +10,12 @@
 | contains the "web" middleware group. Now create something great!
 |
 */
+Route::post('bike/store', 'BikeController@store');
+Route::get('partner-with-us', 'BikeController@create');
+
+// Route::post('/bikeStation/edit/{bikeStationId}', 'BikeStationController@edit');
+Route::post('/bikeStation/store', 'BikeStationController@store');
+Route::get('/bikeStation/create', 'BikeStationController@create');
 
 Route::get('/end', 'EndController@index');
 
@@ -25,9 +31,9 @@ Route::get('/how-it-works', function () {
     return view('how');
 });
 
-Route::get('/partner-with-us', function () {
-    return view('partner');
-});
+// Route::get('/partner-with-us', function () {
+//     return view('partner');
+// });
 
 Route::get('/about-us', function () {
     return view('about');

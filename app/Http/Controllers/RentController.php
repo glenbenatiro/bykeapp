@@ -21,7 +21,7 @@ class RentController extends Controller
             $features[] = array(
                 'type' => 'Feature',
                 'geometry' => array('type' => 'Point', 'coordinates' => $coordinates),
-                'properties' => array('title' => 'IT Park','id'=>$value['id']),
+                'properties' => array('title' => $value['name'],'id'=>$value['id']),
             );
         }
 

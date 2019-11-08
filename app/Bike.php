@@ -7,6 +7,6 @@ use Illuminate\Database\Eloquent\Model;
 class Bike extends Model
 {
     protected $fillable = [
-        'owner','use_count' ,'last_maintenance_check','station_id'
+        'owner_id','stations_id','last_maintenance_check','isInUse' ,'contactNumber'
     ];
 }

@@ -31,6 +31,7 @@ class DatabaseSeeder extends Seeder
             'phone' => 123456789,
             'first_name' => 'Jari',
             'last_name' => 'Mesina',
+            'isInvestor'=>0,
             'email_verified_at' => Carbon::now()->format('Y-m-d H:i:s'),
             'distance_travelled' => 123,
         ]);
@@ -42,12 +43,13 @@ class DatabaseSeeder extends Seeder
             'phone' => 123456789,
             'first_name' => 'Glen',
             'last_name' => 'Benatiro',
+            'isInvestor'=>0,
             'email_verified_at' => Carbon::now()->format('Y-m-d H:i:s'),
             'distance_travelled' => 123,
         ]);
 
         DB::table('bikes')->insert([
-            'user_id' => 1,
+            'owner_id' => 1,
             'stations_id' => 2,
             'isInUse' => 1,
             'last_maintenance_check' => Carbon::now()->format('Y-m-d H:i:s'),
@@ -55,7 +57,7 @@ class DatabaseSeeder extends Seeder
         ]);
 
         DB::table('bikes')->insert([
-            'user_id' => 1,
+            'owner_id' => 1,
             'stations_id' => 2,
             'isInUse' => 1,
             'last_maintenance_check' => Carbon::now()->format('Y-m-d H:i:s'),
@@ -63,7 +65,7 @@ class DatabaseSeeder extends Seeder
         ]);
 
         DB::table('bikes')->insert([
-            'user_id' => 1,
+            'owner_id' => 1,
             'stations_id' => 2,
             'isInUse' => 0,
             'last_maintenance_check' => Carbon::now()->format('Y-m-d H:i:s'),
@@ -71,7 +73,7 @@ class DatabaseSeeder extends Seeder
         ]);
 
         DB::table('bikes')->insert([
-            'user_id' => 1,
+            'owner_id' => 2,
             'stations_id' => 2,
             'isInUse' => 0,
             'last_maintenance_check' => Carbon::now()->format('Y-m-d H:i:s'),
@@ -79,7 +81,7 @@ class DatabaseSeeder extends Seeder
         ]);
 
         DB::table('bikes')->insert([
-            'user_id' => 1,
+            'owner_id' => 1,
             'stations_id' => 2,
             'isInUse' => 0,
             'last_maintenance_check' => Carbon::now()->format('Y-m-d H:i:s'),
@@ -87,7 +89,7 @@ class DatabaseSeeder extends Seeder
         ]);
 
         DB::table('bikes')->insert([
-            'user_id' => 1,
+            'owner_id' => 1,
             'stations_id' => 1,
             'isInUse' => 0,
             'last_maintenance_check' => Carbon::now()->format('Y-m-d H:i:s'),
