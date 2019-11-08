@@ -11,7 +11,7 @@ use App\Instance;
 class EndController extends Controller
 {
     public function store(Request $request)
-    {
+    {    
         // change instance from active to inactive
         $instance = Instance::where('isActive', 1)->where('user_id', Auth::id())->first();
         $instance->isActive = 0;
@@ -22,11 +22,13 @@ class EndController extends Controller
 
         // add instance details
         $instance->ended_at = date('Y-m-d H:i:s');
-        $instance->total_distance += $request->formDistance;
+        $instance->total_distance = $request->formDistance;
+        $instance->pointsEarned = ($request->formDistance / 10);
         $instance->save();
 
-        // update user points
-        $instance->user->points += $request->formDistance / 10;
+        // update distance and total points
+        $instance->user->distance_travelled += $request->formDistance;
+        $instance->user->points += $instance->pointsEarned;
         $instance->user->save();
         
         // eager load user data linked to instance

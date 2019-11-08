@@ -27,7 +27,7 @@ class CreateUsersTable extends Migration
             $table->boolean('isInvestor');            
             $table->rememberToken();
 
-            $table->integer('distance_travelled')->default(0);
+            $table->unsignedBigInteger('distance_travelled')->default(0);
             $table->float('points', 9, 2)->default(0);
         });
     }

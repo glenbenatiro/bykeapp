@@ -26,6 +26,7 @@ class CreateInstancesTable extends Migration
             $table->timestamp('ended_at')->nullable();
             $table->float('total_distance', 9, 3)->nullable();
 
+            $table->float('pointsEarned', 9, 2)->default(0);
             $table->foreign('user_id')->references('id')->on('users')->onDelete('cascade');
             $table->foreign('bike_id')->references('id')->on('bikes')->onDelete('cascade');
             $table->foreign('station_id')->references('id')->on('bike_stations')->onDelete('cascade');
