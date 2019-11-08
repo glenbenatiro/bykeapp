@@ -12,7 +12,7 @@
         <p>Fare: {{$instance->totalFare}}</p>
         <p>No overtime charge</p>
         <br>
-        <p>You have earned +3 points</p>
+        <p>You have earned {{$instance->pointsEarned}} points</p>
       </div>
 
     <!-- <div class="flex flex-col w-1/2 items-center">
