@@ -15,11 +15,11 @@ class CreateBikesTable extends Migration
     {
         Schema::create('bikes', function (Blueprint $table) {
             $table->bigIncrements('id', false, true);
-            $table->unsignedBigInteger('user_id');
-            $table->foreign('user_id')->references('id')->on('users')->onDelete('cascade');
+            $table->unsignedBigInteger('owner_id');
+            $table->foreign('owner_id')->references('id')->on('users')->onDelete('cascade');
             $table->unsignedBigInteger('stations_id');
             $table->foreign('stations_id')->references('id')->on('bike_stations')->onDelete('cascade');
-            $table->string('last_maintenance_check');
+            $table->string('last_maintenance_check')->nullable();
             $table->bigInteger('isInUse');
             $table->string('contactNumber');
             $table->timestamps();

@@ -22,7 +22,8 @@ class CreateUsersTable extends Migration
             $table->string('first_name');
             $table->string('last_name');            
             $table->timestamp('email_verified_at')->nullable();
-            $table->integer('distance_travelled')->nullable();            
+            $table->integer('distance_travelled')->nullable();
+            $table->boolean('isInvestor');            
             $table->rememberToken();
             $table->timestamps();
         });

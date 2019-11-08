@@ -26,7 +26,31 @@ class BikeStationController extends Controller
      */
     public function create()
     {
-        return view('bike-station.create');
+        $bikeStations = BikeStation::all();
+
+        $original_json_string = $bikeStations;
+        $original_data = json_decode($original_json_string, true);
+        $features = array();
+        $features2 = array();
+
+        foreach($original_data as $key => $value) {
+            $coordinates = array('0' => $value['long'], '1' => $value['lat']);
+            $features[] = array(
+                'type' => 'Feature',
+                'geometry' => array('type' => 'Point', 'coordinates' => $coordinates),
+                'properties' => array('title' => 'IT Park','id'=>$value['id']),
+            );
+        }
+
+        $new_data = array(
+            'type' => 'FeatureCollection',
+            'features' => $features,
+        );
+
+    
+        $final_data = json_encode($new_data, JSON_PRETTY_PRINT);
+
+        return view('bike-station.create')->with(compact('final_data'));
     }
 
     /**
@@ -37,14 +61,23 @@ class BikeStationController extends Controller
      */
     public function store(Request $request)
     {
+        // dd($request->long);
         $request->validate([
             'lat' => 'bail|required|numeric',
             'long' => 'bail|required|numeric',
         ]);
 
         // shortcut for creating new model 
-        BikeStation::create($request->all());
+        // BikeStation::create($request->all());
 
+        $bikeStation = new BikeStation;
+
+        $bikeStation->name = $request->name;
+        $bikeStation->lat = $request->lat;
+        $bikeStation->long = $request->long;
+        $bikeStation->save();
+
+        dd("SUCCESS");
         return redirect('/bike-stations')
             ->with('success', 'Bike station created successfully.');
     }
