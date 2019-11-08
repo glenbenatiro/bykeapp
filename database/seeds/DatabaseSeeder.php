@@ -33,7 +33,7 @@ class DatabaseSeeder extends Seeder
             'last_name' => 'Mesina',
             'isInvestor'=>0,
             'email_verified_at' => Carbon::now()->format('Y-m-d H:i:s'),
-            'distance_travelled' => 123,
+            'distance_travelled' => 0,
         ]);
 
         DB::table('users')->insert([
@@ -45,7 +45,7 @@ class DatabaseSeeder extends Seeder
             'last_name' => 'Benatiro',
             'isInvestor'=>0,
             'email_verified_at' => Carbon::now()->format('Y-m-d H:i:s'),
-            'distance_travelled' => 123,
+            'distance_travelled' => 0,
         ]);
 
         DB::table('bikes')->insert([
@@ -59,7 +59,7 @@ class DatabaseSeeder extends Seeder
         DB::table('bikes')->insert([
             'owner_id' => 1,
             'stations_id' => 2,
-            'isInUse' => 1,
+            'isInUse' => 0,
             'last_maintenance_check' => Carbon::now()->format('Y-m-d H:i:s'),
             'contactNumber' => "09233945232",
         ]);
@@ -94,17 +94,6 @@ class DatabaseSeeder extends Seeder
             'isInUse' => 0,
             'last_maintenance_check' => Carbon::now()->format('Y-m-d H:i:s'),
             'contactNumber' => "09233945232",
-        ]);
-
-        DB::table('instances')->insert([
-            'user_id' => 1,
-            'bike_id' => 1,
-            'station_id' => 2,
-            'duration' => 3,
-            'totalFare' => 90,
-            'isActive' => 0,
-            'ended_at' => Carbon::now()->format('Y-m-d H:i:s'),
-            'total_distance' => 10,
         ]);
     }
 }

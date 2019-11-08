@@ -15,6 +15,8 @@ class CreateUsersTable extends Migration
     {
         Schema::create('users', function (Blueprint $table) {
             $table->bigIncrements('id');
+            $table->timestamps();
+
             $table->string('username');
             $table->string('password');
             $table->string('email')->unique();
@@ -22,10 +24,11 @@ class CreateUsersTable extends Migration
             $table->string('first_name');
             $table->string('last_name');            
             $table->timestamp('email_verified_at')->nullable();
-            $table->integer('distance_travelled')->nullable();
             $table->boolean('isInvestor');            
             $table->rememberToken();
-            $table->timestamps();
+
+            $table->integer('distance_travelled')->default(0);
+            $table->float('points', 9, 2)->default(0);
         });
     }
 

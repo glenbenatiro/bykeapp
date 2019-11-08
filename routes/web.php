@@ -17,7 +17,7 @@ Route::get('partner-with-us', 'BikeController@create');
 Route::post('/bikeStation/store', 'BikeStationController@store');
 Route::get('/bikeStation/create', 'BikeStationController@create');
 
-Route::get('/end', 'EndController@index');
+Route::post('/end', 'EndController@store');
 
 Route::get('/', function () {
     return view('welcome');

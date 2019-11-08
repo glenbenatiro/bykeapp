@@ -36,14 +36,21 @@
 
 <!-- buttons -->
 <div class="flex fixed inset-x-0 bottom-0 z-50 p-12 justify-between">
-    <a href="/rent"
-        class="text-center text-md bg-green-600 hover:bg-green-700 text-white font-bold py-2 px-4 rounded-full">
-        End Session
-    </a>
+    <form method="post" action="/end">
+        @csrf
+
+        <input type="hidden" id="formDistance" name="formDistance">
+
+        <button type="submit"
+            class="text-center text-md bg-green-600 hover:bg-green-700 text-white font-bold py-2 px-4 rounded-full">
+            End Session
+        </button>
+    </form>
 
     <a href="/rent" class="text-center text-md bg-red-600 hover:bg-red-700 text-white font-bold py-2 px-4 rounded-full">
         EMERGENCY
     </a>
+
 </div>
 
 <script>
@@ -217,6 +224,9 @@
         distanceTravelled += calculateDistance(lastPos.coords.latitude, lastPos.coords.longitude,
             position.coords.latitude, position.coords.longitude);
 
+        // update distance hidden input
+        document.getElementById('formDistance').value = distanceTravelled;
+        
         // set lastpos to current position
         lastPos = position;
 

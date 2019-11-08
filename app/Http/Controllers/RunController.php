@@ -23,8 +23,8 @@ class RunController extends Controller
 
         // update bike isinuse status
         $bike = Bike::find($freeBike->id);
-        // $bike->isInUse = 1;
-        // $bike->save();
+        $bike->isInUse = 1;
+        $bike->save();
 
         $instance = new Instance;
         $instance->user_id = Auth::id();

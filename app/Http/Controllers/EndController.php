@@ -6,18 +6,32 @@ use Illuminate\Http\Request;
 use Auth;
 use DB;
 use App\Session;
+use App\Instance;
 
 class EndController extends Controller
 {
-    public function index()
+    public function store(Request $request)
     {
-        // $data = BikeStation::all();
-        $user = Auth::user();
-        // dump($user->id);
-        $session = DB::table('sessions')->where('user_id','=',$user->id)->where('isActive','=',0)->first();
-        //$session = Session::where('user_id','=',$user->id)->where('isActive','=',1)->get();
-        // dd($session);
+        // change instance from active to inactive
+        $instance = Instance::where('isActive', 1)->where('user_id', Auth::id())->first();
+        $instance->isActive = 0;
+        
+       // change bike from isinuse = 1 to 0
+        $instance->bike->isInUse = 0;
+        $instance->bike->save();
 
-        return view('end')->with(compact('user','session'));
+        // add instance details
+        $instance->ended_at = date('Y-m-d H:i:s');
+        $instance->total_distance += $request->formDistance;
+        $instance->save();
+
+        // update user points
+        $instance->user->points += $request->formDistance / 10;
+        $instance->user->save();
+        
+        // eager load user data linked to instance
+        $instance->with('user')->get();
+    
+        return view('end')->with(compact('instance'));
     }
 }

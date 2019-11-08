@@ -36,4 +36,14 @@ class User extends Authenticatable
     protected $casts = [
         'email_verified_at' => 'datetime',
     ];
+
+    protected $attributes = [
+        'points' => 0,
+        'distance_travelled' => 0,
+    ];
+
+    public function instance()
+    {
+        return $this->hasMany('App\Instance');
+    }
 }

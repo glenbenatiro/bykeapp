@@ -3,13 +3,13 @@
 @section('content')
 
       <div class="flex w-1/2 flex-col">
-        <p>Session ID: {{$user->id}}</p>
-        <p>Username: {{$user->username}}</p>
-        <p>Bike ID: {{$session->bike_id}}</p>
-        <p>Start: {{$session->time_started}}</p>
-        <p>End: {{$session->time_ended}}</p>
-        <p>Total Distance Travelled: {{$session->total_distance_travelled}}</p>
-        <p>Fare: {{$session->amount}}</p>
+        <p>Instance ID: {{$instance->id}}</p>
+        <p>Username: {{$instance->user->username}}</p>
+        <p>Bike ID: {{$instance->bike_id}}</p>
+        <p>Start: {{$instance->time_started}}</p>
+        <p>End: {{$instance->ended_at}}</p>
+        <p>Total Distance Travelled: {{ number_format((float)$instance->total_distance, 3, '.', '') }}</p>
+        <p>Fare: {{$instance->totalFare}}</p>
         <p>No overtime charge</p>
         <br>
         <p>You have earned +3 points</p>
