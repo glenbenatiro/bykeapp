@@ -49,7 +49,7 @@ Route::post('/run', 'RunController@run');
 
 Auth::routes();
 Route::get('/home', 'HomeController@index')->name('home');
-Route::resource('/test', 'test');
+Route::get('/test', 'test@itexmo');
 
 // payment routes
 Route::get('/payments', 'PaymentController@getUserDetails');

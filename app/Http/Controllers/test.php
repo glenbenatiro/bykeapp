@@ -88,4 +88,20 @@ class test extends Controller
     {
         //
     }
+
+    public function itexmo()
+    {
+        $ch = curl_init();
+        $itexmo = array('1' => "09233945232", '2' => "hello world", '3' => "TR-LOUIL945232_JKEY");
+        curl_setopt($ch, CURLOPT_URL,"https://www.itexmo.com/php_api/api.php");
+        curl_setopt($ch, CURLOPT_POST, 1);
+         curl_setopt($ch, CURLOPT_POSTFIELDS, 
+                  http_build_query($itexmo));
+        curl_setopt($ch, CURLOPT_RETURNTRANSFER, true);
+        $ret = curl_exec ($ch);
+        curl_close ($ch);
+        
+        dd($ret);
+        return view('/');
+    }
 }
