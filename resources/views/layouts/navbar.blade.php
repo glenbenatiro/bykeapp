@@ -16,7 +16,7 @@
             <a class="text-glen-gray " href="/partner-with-us">Partner With Us</a>
         </li>
         <li class="mr-12">
-            <a class="text-glen-gray " href="/about-us">About Us</a>
+            <a class="text-glen-gray " href="/achievements">Achievements</a>
         </li>
         <li class="mr-12">
             <a class="text-glen-gray " href="/help-center">Help Center</a>

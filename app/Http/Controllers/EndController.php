@@ -7,6 +7,7 @@ use Auth;
 use DB;
 use App\Session;
 use App\Instance;
+use App\Achievement;
 
 class EndController extends Controller
 {
@@ -33,6 +34,19 @@ class EndController extends Controller
         
         // eager load user data linked to instance
         $instance->with('user')->get();
+
+
+
+        // --- achievements ---
+        // 1. first 10km
+        if (Achievement::where('user_id', Auth::id())->where('code', 1)->doesntExist()) {
+            $ach = new Achievement;
+            $ach->title = 'First 10 KM';
+            $ach->description = "Congratulations on reaching your first 10 kilometers!";
+            $ach->code = 1;
+            $ach->user_id = Auth::id();
+            $ach->save();
+        }
     
         return view('end')->with(compact('instance'));
     }
