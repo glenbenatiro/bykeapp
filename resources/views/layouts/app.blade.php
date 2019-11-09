@@ -20,7 +20,7 @@
         @include('layouts.navbar')
 
         <!-- body -->
-        <div class="flex flex-col w-full min-h-screen px-48 py-12 items-center">
+        <div class="flex flex-col w-full min-h-screen px-48 py-12 items-center custom">
             @yield('content')
         </div>
 

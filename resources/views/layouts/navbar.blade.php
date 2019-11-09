@@ -16,7 +16,7 @@
             <a class="text-glen-gray " href="/invest">Invest a Bike</a>
         </li>
         <li class="mr-12">
-            <a class="text-glen-gray " href="/achievements">Achievements</a>
+            <a class="text-glen-gray " href="#">Achievements</a>
         </li>
         <li class="mr-12">
             <a class="text-glen-gray " href="/perks">Perks</a>

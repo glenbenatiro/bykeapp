@@ -23,12 +23,11 @@ class EndController extends Controller
 
         // check for distance travelled == null
         if($request->formDistance == null) {
-            $request->formDistance = 0;
+            $instance->total_distance = 0;
         }
 
         // add instance details
         $instance->ended_at = date('Y-m-d H:i:s');
-        $instance->total_distance = $request->formDistance;
         $instance->pointsEarned = ($request->formDistance / 10);
         $instance->save();
 

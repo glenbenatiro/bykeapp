@@ -2,6 +2,7 @@
 
 namespace App;
 
+use App\Instance;
 use Illuminate\Contracts\Auth\MustVerifyEmail;
 use Illuminate\Foundation\Auth\User as Authenticatable;
 use Illuminate\Notifications\Notifiable;
@@ -42,7 +43,7 @@ class User extends Authenticatable
         'distance_travelled' => 0,
     ];
 
-    public function instance()
+    public function instances()
     {
         return $this->hasMany('App\Instance');
     }

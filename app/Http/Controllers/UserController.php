@@ -2,6 +2,7 @@
 
 namespace App\Http\Controllers;
 
+use App\Instance;
 use Auth;
 use App\User;
 use Illuminate\Http\Request;
@@ -48,8 +49,9 @@ class UserController extends Controller
     public function show($id)
     {
         $user = User::find(Auth::id());
+        $instances = Instance::where('user_id', Auth::id())->get();
 
-        return view('user.show', compact('user'));
+        return view('user.show', compact('user', 'instances'));
     }
 
     /**

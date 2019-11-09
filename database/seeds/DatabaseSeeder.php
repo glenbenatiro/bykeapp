@@ -24,6 +24,42 @@ class DatabaseSeeder extends Seeder
             'name' => 'IT Park Station 2',
         ]);
 
+        DB::table('bike_stations')->insert([
+            'lat' => 10.323346,
+            'long' => 123.883717,
+            'name' => 'Guadalupe Station 3',
+        ]);
+
+        DB::table('bike_stations')->insert([
+            'lat' => 10.318447,
+            'long' => 123.903656,
+            'name' => 'USC Main 4',
+        ]);
+
+        DB::table('bike_stations')->insert([
+            'lat' => 10.298621,
+            'long' => 123.899120,
+            'name' => 'USC Main Station 5',
+        ]);
+
+        DB::table('bike_stations')->insert([
+            'lat' => 10.352461,
+            'long' => 123.913819,
+            'name' => 'USC-TC Station 6',
+        ]);
+
+        DB::table('users')->insert([
+            'username' => "admin",
+            'password' => bcrypt('09876543'),
+            'email' => "admin@gmail.com",
+            'phone' => 123456789,
+            'first_name' => 'Admin',
+            'last_name' => 'Admin',
+            'isInvestor'=>0,
+            'email_verified_at' => Carbon::now()->format('Y-m-d H:i:s'),
+            'distance_travelled' => 0,
+        ]);
+
         DB::table('users')->insert([
             'username' => "jari69",
             'password' => bcrypt('09876543'),
@@ -48,41 +84,29 @@ class DatabaseSeeder extends Seeder
             'distance_travelled' => 0,
         ]);
 
+        DB::table('users')->insert([
+            'username' => "royboy",
+            'password' => bcrypt('09876543'),
+            'email' => "roy@gmail.com",
+            'phone' => 123456789,
+            'first_name' => 'Roy',
+            'last_name' => 'Dalin',
+            'isInvestor'=>0,
+            'email_verified_at' => Carbon::now()->format('Y-m-d H:i:s'),
+            'distance_travelled' => 0,
+        ]);
+
         DB::table('bikes')->insert([
             'owner_id' => 1,
-            'stations_id' => 2,
-            'isInUse' => 1,
+            'stations_id' => 1,
+            'isInUse' => 0,
             'last_maintenance_check' => Carbon::now()->format('Y-m-d H:i:s'),
             'contactNumber' => "09224889195",
         ]);
 
         DB::table('bikes')->insert([
             'owner_id' => 1,
-            'stations_id' => 2,
-            'isInUse' => 0,
-            'last_maintenance_check' => Carbon::now()->format('Y-m-d H:i:s'),
-            'contactNumber' => "09233945232",
-        ]);
-
-        DB::table('bikes')->insert([
-            'owner_id' => 1,
-            'stations_id' => 2,
-            'isInUse' => 0,
-            'last_maintenance_check' => Carbon::now()->format('Y-m-d H:i:s'),
-            'contactNumber' => "09233945232",
-        ]);
-
-        DB::table('bikes')->insert([
-            'owner_id' => 2,
-            'stations_id' => 2,
-            'isInUse' => 0,
-            'last_maintenance_check' => Carbon::now()->format('Y-m-d H:i:s'),
-            'contactNumber' => "09233945232",
-        ]);
-
-        DB::table('bikes')->insert([
-            'owner_id' => 1,
-            'stations_id' => 2,
+            'stations_id' => 1,
             'isInUse' => 0,
             'last_maintenance_check' => Carbon::now()->format('Y-m-d H:i:s'),
             'contactNumber' => "09233945232",
@@ -96,22 +120,220 @@ class DatabaseSeeder extends Seeder
             'contactNumber' => "09233945232",
         ]);
 
-        DB::table('perks')->insert([
-            'name' => 'Bubble Tea Station - 100 Pesos GC',
-            'description' => 'Get a Bubble Tea Station gift certificate worth 100 pesos!',
-            'points' => 100,
+        DB::table('bikes')->insert([
+            'owner_id' => 1,
+            'stations_id' => 1,
+            'isInUse' => 0,
+            'last_maintenance_check' => Carbon::now()->format('Y-m-d H:i:s'),
+            'contactNumber' => "09233945232",
         ]);
 
-        DB::table('perks')->insert([
-            'name' => 'One (1) Ayala Center Malls Movie Ticket',
-            'description' => 'Get one movie ticket for Ayala Center Malls for 300 points!',
-            'points' => 300,
+        DB::table('bikes')->insert([
+            'owner_id' => 1,
+            'stations_id' => 1,
+            'isInUse' => 0,
+            'last_maintenance_check' => Carbon::now()->format('Y-m-d H:i:s'),
+            'contactNumber' => "09233945232",
         ]);
 
-        DB::table('perks')->insert([
-            'name' => 'Anjo World Ticket Pass for One Day',
-            'description' => 'Get a Bubble Tea Station gift certificate worth 100 pesos!',
-            'points' => 500,
+        DB::table('bikes')->insert([
+            'owner_id' => 1,
+            'stations_id' => 2,
+            'isInUse' => 0,
+            'last_maintenance_check' => Carbon::now()->format('Y-m-d H:i:s'),
+            'contactNumber' => "09233945232",
+        ]);
+
+        DB::table('bikes')->insert([
+            'owner_id' => 1,
+            'stations_id' => 2,
+            'isInUse' => 0,
+            'last_maintenance_check' => Carbon::now()->format('Y-m-d H:i:s'),
+            'contactNumber' => "09233945232",
+        ]);
+
+        DB::table('bikes')->insert([
+            'owner_id' => 1,
+            'stations_id' => 2,
+            'isInUse' => 0,
+            'last_maintenance_check' => Carbon::now()->format('Y-m-d H:i:s'),
+            'contactNumber' => "09233945232",
+        ]);
+
+        DB::table('bikes')->insert([
+            'owner_id' => 1,
+            'stations_id' => 2,
+            'isInUse' => 0,
+            'last_maintenance_check' => Carbon::now()->format('Y-m-d H:i:s'),
+            'contactNumber' => "09233945232",
+        ]);
+
+        DB::table('bikes')->insert([
+            'owner_id' => 1,
+            'stations_id' => 2,
+            'isInUse' => 0,
+            'last_maintenance_check' => Carbon::now()->format('Y-m-d H:i:s'),
+            'contactNumber' => "09233945232",
+        ]);
+
+        DB::table('bikes')->insert([
+            'owner_id' => 1,
+            'stations_id' => 3,
+            'isInUse' => 0,
+            'last_maintenance_check' => Carbon::now()->format('Y-m-d H:i:s'),
+            'contactNumber' => "09233945232",
+        ]);
+
+        DB::table('bikes')->insert([
+            'owner_id' => 1,
+            'stations_id' => 3,
+            'isInUse' => 0,
+            'last_maintenance_check' => Carbon::now()->format('Y-m-d H:i:s'),
+            'contactNumber' => "09233945232",
+        ]);
+
+        DB::table('bikes')->insert([
+            'owner_id' => 1,
+            'stations_id' => 3,
+            'isInUse' => 0,
+            'last_maintenance_check' => Carbon::now()->format('Y-m-d H:i:s'),
+            'contactNumber' => "09233945232",
+        ]);
+
+        DB::table('bikes')->insert([
+            'owner_id' => 1,
+            'stations_id' => 3,
+            'isInUse' => 0,
+            'last_maintenance_check' => Carbon::now()->format('Y-m-d H:i:s'),
+            'contactNumber' => "09233945232",
+        ]);
+
+        DB::table('bikes')->insert([
+            'owner_id' => 1,
+            'stations_id' => 3,
+            'isInUse' => 0,
+            'last_maintenance_check' => Carbon::now()->format('Y-m-d H:i:s'),
+            'contactNumber' => "09233945232",
+        ]);
+
+        DB::table('bikes')->insert([
+            'owner_id' => 1,
+            'stations_id' => 4,
+            'isInUse' => 0,
+            'last_maintenance_check' => Carbon::now()->format('Y-m-d H:i:s'),
+            'contactNumber' => "09233945232",
+        ]);
+
+        DB::table('bikes')->insert([
+            'owner_id' => 1,
+            'stations_id' => 4,
+            'isInUse' => 0,
+            'last_maintenance_check' => Carbon::now()->format('Y-m-d H:i:s'),
+            'contactNumber' => "09233945232",
+        ]);
+
+        DB::table('bikes')->insert([
+            'owner_id' => 1,
+            'stations_id' => 4,
+            'isInUse' => 0,
+            'last_maintenance_check' => Carbon::now()->format('Y-m-d H:i:s'),
+            'contactNumber' => "09233945232",
+        ]);
+
+        DB::table('bikes')->insert([
+            'owner_id' => 1,
+            'stations_id' => 4,
+            'isInUse' => 0,
+            'last_maintenance_check' => Carbon::now()->format('Y-m-d H:i:s'),
+            'contactNumber' => "09233945232",
+        ]);
+
+        DB::table('bikes')->insert([
+            'owner_id' => 1,
+            'stations_id' => 4,
+            'isInUse' => 0,
+            'last_maintenance_check' => Carbon::now()->format('Y-m-d H:i:s'),
+            'contactNumber' => "09233945232",
+        ]);
+
+        DB::table('bikes')->insert([
+            'owner_id' => 1,
+            'stations_id' => 5,
+            'isInUse' => 0,
+            'last_maintenance_check' => Carbon::now()->format('Y-m-d H:i:s'),
+            'contactNumber' => "09233945232",
+        ]);
+
+        DB::table('bikes')->insert([
+            'owner_id' => 1,
+            'stations_id' => 5,
+            'isInUse' => 0,
+            'last_maintenance_check' => Carbon::now()->format('Y-m-d H:i:s'),
+            'contactNumber' => "09233945232",
+        ]);
+
+        DB::table('bikes')->insert([
+            'owner_id' => 1,
+            'stations_id' => 5,
+            'isInUse' => 0,
+            'last_maintenance_check' => Carbon::now()->format('Y-m-d H:i:s'),
+            'contactNumber' => "09233945232",
+        ]);
+
+        DB::table('bikes')->insert([
+            'owner_id' => 1,
+            'stations_id' => 5,
+            'isInUse' => 0,
+            'last_maintenance_check' => Carbon::now()->format('Y-m-d H:i:s'),
+            'contactNumber' => "09233945232",
+        ]);
+
+        DB::table('bikes')->insert([
+            'owner_id' => 1,
+            'stations_id' => 5,
+            'isInUse' => 0,
+            'last_maintenance_check' => Carbon::now()->format('Y-m-d H:i:s'),
+            'contactNumber' => "09233945232",
+        ]);
+
+        DB::table('bikes')->insert([
+            'owner_id' => 1,
+            'stations_id' => 6,
+            'isInUse' => 0,
+            'last_maintenance_check' => Carbon::now()->format('Y-m-d H:i:s'),
+            'contactNumber' => "09233945232",
+        ]);
+
+        DB::table('bikes')->insert([
+            'owner_id' => 1,
+            'stations_id' => 6,
+            'isInUse' => 0,
+            'last_maintenance_check' => Carbon::now()->format('Y-m-d H:i:s'),
+            'contactNumber' => "09233945232",
+        ]);
+
+        DB::table('bikes')->insert([
+            'owner_id' => 1,
+            'stations_id' => 6,
+            'isInUse' => 0,
+            'last_maintenance_check' => Carbon::now()->format('Y-m-d H:i:s'),
+            'contactNumber' => "09233945232",
+        ]);
+
+        DB::table('bikes')->insert([
+            'owner_id' => 1,
+            'stations_id' => 6,
+            'isInUse' => 0,
+            'last_maintenance_check' => Carbon::now()->format('Y-m-d H:i:s'),
+            'contactNumber' => "09233945232",
+        ]);
+
+        DB::table('bikes')->insert([
+            'owner_id' => 1,
+            'stations_id' => 6,
+            'isInUse' => 0,
+            'last_maintenance_check' => Carbon::now()->format('Y-m-d H:i:s'),
+            'contactNumber' => "09233945232",
         ]);
     }
 }
