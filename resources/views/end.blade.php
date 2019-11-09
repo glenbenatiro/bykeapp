@@ -15,7 +15,7 @@
         <p>Total Distance Travelled: {{ number_format((float)$instance->total_distance, 3, '.', '') }}</p>
         <p>Fare: ₱{{$instance->totalFare}}</p>
         <br>
-        <p>You have earned <span class="font-bold text-green-600">{{$instance->pointsEarned}}</span> points</p>
+        <p>You have earned <span class="font-bold text-green-600">{{number_format((float)$instance->pointsEarned, 2, '.', '')}}</span> points</p>
       </div>
       
       <a href="/rent" class="mt-6 py-2 px-4 text-white bg-green-600 rounded-full">Back to Rent</a>

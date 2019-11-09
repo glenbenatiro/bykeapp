@@ -95,5 +95,23 @@ class DatabaseSeeder extends Seeder
             'last_maintenance_check' => Carbon::now()->format('Y-m-d H:i:s'),
             'contactNumber' => "09233945232",
         ]);
+
+        DB::table('perks')->insert([
+            'name' => 'Bubble Tea Station - 100 Pesos GC',
+            'description' => 'Get a Bubble Tea Station gift certificate worth 100 pesos!',
+            'points' => 100,
+        ]);
+
+        DB::table('perks')->insert([
+            'name' => 'One (1) Ayala Center Malls Movie Ticket',
+            'description' => 'Get one movie ticket for Ayala Center Malls for 300 points!',
+            'points' => 300,
+        ]);
+
+        DB::table('perks')->insert([
+            'name' => 'Anjo World Ticket Pass for One Day',
+            'description' => 'Get a Bubble Tea Station gift certificate worth 100 pesos!',
+            'points' => 500,
+        ]);
     }
 }
