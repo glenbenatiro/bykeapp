@@ -69,3 +69,5 @@ Route::get('/logout', function () {
     Auth::logout();
     return redirect('/');
 });
+
+Route::resource('/perks', 'PerkController');

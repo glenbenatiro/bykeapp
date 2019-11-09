@@ -19,7 +19,7 @@
             <a class="text-glen-gray " href="/achievements">Achievements</a>
         </li>
         <li class="mr-12">
-            <a class="text-glen-gray " href="/help-center">Help Center</a>
+            <a class="text-glen-gray " href="/perks">Perks</a>
         </li>
     </ul>
 
