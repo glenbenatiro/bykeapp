@@ -2,6 +2,7 @@
 
 namespace App;
 
+use App\User;
 use Illuminate\Database\Eloquent\Model;
 
 class Bike extends Model
@@ -13,5 +14,10 @@ class Bike extends Model
     public function instances()
     {
         return $this->hasMany('App\Instance');
+    }
+
+    public function user()
+    {
+        return $this->belongsTo('App\User');
     }
 }

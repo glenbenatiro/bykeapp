@@ -6,7 +6,7 @@ module.exports = {
             },
 
             fontSize: {
-                'splash': '6.5rem',
+                'splash': '5rem',
             },
 
             colors: {
@@ -25,6 +25,12 @@ module.exports = {
             fontFamily: {
                 'custom': ['Open Sans'],
             },
+
+            spacing: {
+                '128': '48rem',
+            },
+
+
         },
     },
     variants: {},

@@ -13,7 +13,7 @@
             <a class="text-glen-gray " href="/what-is-byke">What is Byke</a>
         </li>
         <li class="mr-12">
-            <a class="text-glen-gray " href="/partner-with-us">Partner With Us</a>
+            <a class="text-glen-gray " href="/invest">Invest a Bike</a>
         </li>
         <li class="mr-12">
             <a class="text-glen-gray " href="/achievements">Achievements</a>

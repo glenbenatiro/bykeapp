@@ -46,4 +46,9 @@ class User extends Authenticatable
     {
         return $this->hasMany('App\Instance');
     }
+
+    public function bike()
+    {
+        return $this->hasOne('App\Bike', 'owner_id');
+    }
 }

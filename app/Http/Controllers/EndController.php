@@ -21,6 +21,11 @@ class EndController extends Controller
         $instance->bike->isInUse = 0;
         $instance->bike->save();
 
+        // check for distance travelled == null
+        if($request->formDistance == null) {
+            $request->formDistance = 0;
+        }
+
         // add instance details
         $instance->ended_at = date('Y-m-d H:i:s');
         $instance->total_distance = $request->formDistance;
@@ -34,7 +39,6 @@ class EndController extends Controller
         
         // eager load user data linked to instance
         $instance->with('user')->get();
-
 
 
         // --- achievements ---

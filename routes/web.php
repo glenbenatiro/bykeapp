@@ -11,7 +11,7 @@
 |
 */
 Route::post('bike/store', 'BikeController@store');
-Route::get('partner-with-us', 'BikeController@create');
+Route::get('/invest', 'BikeController@create');
 
 // Route::post('/bikeStation/edit/{bikeStationId}', 'BikeStationController@edit');
 Route::post('/bikeStation/store', 'BikeStationController@store');
@@ -71,3 +71,4 @@ Route::get('/logout', function () {
 });
 
 Route::resource('/perks', 'PerkController');
+Route::resource('/bikes', 'BikeController');

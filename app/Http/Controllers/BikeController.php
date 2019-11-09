@@ -27,8 +27,10 @@ class BikeController extends Controller
      */
     public function create()
     {
+        $user = User::find(Auth::id());
+        $user->with('bike')->get();
 
-        return view('bike.create');
+        return view('bike.create', compact('user'));
     }
 
     /**
@@ -39,9 +41,9 @@ class BikeController extends Controller
      */
     public function store(Request $request)
     {
-        $user = Auth::user();
+        $user = User::find($request->user_id);
         $bikeStation = new BikeStation;
-
+    
         if($user->isInvestor){
             dd("You are already an investor");
         }
@@ -53,10 +55,10 @@ class BikeController extends Controller
             $bike->stations_id =  rand(1,$count);
             $bike->last_maintenance_check = 0;
             $bike->isInUse = 0;
-            $bike->contactNumber = "09224057162";
+            $bike->contactNumber = "09233945232"; //testing
             $bike->save();
             $user->save();
-            return redirect('/');
+            return redirect('/invest');
 
         }
     }

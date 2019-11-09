@@ -14,8 +14,6 @@ class PerkController extends Controller
      */
     public function index()
     {
-        dd('hello');
-
         $perks = Perk::all();
 
         return view('perk.index', compact('perks'));
@@ -40,9 +38,9 @@ class PerkController extends Controller
     public function store(Request $request)
     {
         $perk = new Perk;
-        $perk->name = $request->perk;
+        $perk->name = $request->name;
         $perk->description = $request->description;
-        $perk->points = $request->points;
+        $perk->points = (int)$request->points;
         $perk->save();
 
         return redirect('/perks');

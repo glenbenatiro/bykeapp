@@ -15,7 +15,7 @@ class CreateBikesTable extends Migration
     {
         Schema::create('bikes', function (Blueprint $table) {
             $table->bigIncrements('id', false, true);
-            $table->unsignedBigInteger('owner_id');
+            $table->unsignedBigInteger('owner_id')->nullable();
             $table->foreign('owner_id')->references('id')->on('users')->onDelete('cascade');
             $table->unsignedBigInteger('stations_id');
             $table->foreign('stations_id')->references('id')->on('bike_stations')->onDelete('cascade');
