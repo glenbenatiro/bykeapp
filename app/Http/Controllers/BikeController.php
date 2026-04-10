@@ -55,7 +55,7 @@ class BikeController extends Controller
             $bike->stations_id =  rand(1,$count);
             $bike->last_maintenance_check = 0;
             $bike->isInUse = 0;
-            $bike->contactNumber = "09233945232"; //testing
+            $bike->contactNumber = $user->phone;
             $bike->save();
             $user->save();
             return redirect('/invest');
