@@ -119,7 +119,7 @@ class BikeStationController extends Controller
         ]);
 
         // shortcut for creating new model 
-        BikeStation::where('id', $bikeStation.id)->update($update);
+        BikeStation::where('id', $bikeStation->id)->update($request->only(['lat', 'long']));
 
         return redirect('/bike-stations')
             ->with('success', 'Bike station created successfully.');
